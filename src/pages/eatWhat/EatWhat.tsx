@@ -227,7 +227,7 @@ const EatWhat: React.FC = () => {
               e.value &&
                 setNewRestaurant((res) => ({
                   ...res,
-                  weight: e.value,
+                  weight: e.value as number,
                 }));
             }}
           />
