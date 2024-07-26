@@ -41,9 +41,12 @@ const Home: React.FC = () => {
   const [catOptions, setCatOptions] = useState<string[]>([]);
 
   const filteredRestaurants = (() => {
-    const filteredCatsRestaurants = restaurants.filter((restaurant) =>
-      hasIntersection(restaurant.cats, selectedCats)
-    );
+    const filteredCatsRestaurants =
+      cats.length === 0
+        ? restaurants
+        : restaurants.filter((restaurant) =>
+            hasIntersection(restaurant.cats, selectedCats)
+          );
     return filterHistory
       ? filteredCatsRestaurants.filter((restaurant) => {
           const history = histories.find(
