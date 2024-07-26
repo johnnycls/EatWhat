@@ -14,13 +14,13 @@ const AppBar: React.FC<{}> = ({}) => {
       }}
     >
       <Button
-        label="食乜"
+        label="食乜好"
         onClick={() => {
           navigate("/");
         }}
       />
       <Button
-        label="有乜食"
+        label="有咩食"
         onClick={() => {
           navigate("/eatwhat");
         }}

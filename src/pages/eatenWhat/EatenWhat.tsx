@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import AppBar from "../../components/AppBar";
-import { useAppSelector } from "../../app/store";
+import { ConfirmDialog } from "primereact/confirmdialog";
+import { Toast } from "primereact/toast";
+import HistoryTable from "./HistoryTable";
+import ActionButtons from "./ActionButtons";
+import { HistoryType } from "../../slices/historiesSlice";
 
 const EatenWhat: React.FC = () => {
-  const restaurants = useAppSelector((state) => state.restaurants.restaurants);
+  const toast = useRef<Toast>(null);
+
+  const [selectedHistories, setSelectedHistories] = useState<HistoryType[]>([]);
 
   return (
     <div className="flex flex-col h-full w-full">
+      <Toast ref={toast} />
+      <ConfirmDialog />
       <AppBar />
 
-      <div className="w-full flex flex-col gap-1 flex-grow justify-center items-center">
-      </div>
+      <ActionButtons
+        selectedHistoryTime={selectedHistories.map(
+          (history) => history.dateString
+        )}
+        clearSelection={() => setSelectedHistories([])}
+      />
+      <HistoryTable
+        selectedHistory={selectedHistories}
+        setSelectedHistory={setSelectedHistories}
+      />
     </div>
   );
 };

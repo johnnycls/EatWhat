@@ -7,21 +7,20 @@ const TOTAL_DRAWING_TIME = 3000;
 type Lot = {
   name: string;
   weight: number;
-  isActive: boolean;
 };
 
-const weightedRandomDraw = (lots: Lot[]): string => {
+const weightedRandomDraw = (lots: Lot[]): Lot => {
   const totalWeight = lots.reduce((sum, lot) => sum + lot.weight, 0);
   let randomNum = Math.random() * totalWeight;
 
   for (const lot of lots) {
     if (randomNum < lot.weight) {
-      return lot.name;
+      return lot;
     }
     randomNum -= lot.weight;
   }
 
-  return lots[lots.length - 1].name;
+  return lots[lots.length - 1];
 };
 
 const DrawLotsGame: React.FC<{
@@ -29,11 +28,13 @@ const DrawLotsGame: React.FC<{
   drawLabel?: string;
   drawingLabel?: string;
   winnerLabel?: string;
+  onWin?: (lot: Lot) => void;
 }> = ({
   lots,
-  drawLabel = "食乜",
+  drawLabel = "食乜好",
   drawingLabel = "諗緊",
   winnerLabel = "今日食",
+  onWin = () => {},
 }) => {
   const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const [currentName, setCurrentName] = useState<string>("");
@@ -43,15 +44,16 @@ const DrawLotsGame: React.FC<{
     setIsDrawing(true);
     setWinner("");
     const drawInterval = setInterval(() => {
-      setCurrentName(weightedRandomDraw(lots));
+      setCurrentName(weightedRandomDraw(lots).name);
     }, TIME_FOR_DRAWING_ONCE);
 
     setTimeout(() => {
       clearInterval(drawInterval);
       const finalWinner = weightedRandomDraw(lots);
-      setCurrentName(finalWinner);
-      setWinner(finalWinner);
+      setCurrentName(finalWinner.name);
+      setWinner(finalWinner.name);
       setIsDrawing(false);
+      onWin(finalWinner);
     }, TOTAL_DRAWING_TIME);
   };
 

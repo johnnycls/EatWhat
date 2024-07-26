@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export type Restaurant = {
   name: string;
   weight: number;
-  isActive: boolean;
+  cats: string[];
 };
 
 type RestaurantsState = { restaurants: Restaurant[] };
@@ -47,11 +47,11 @@ export const restaurantsSlice = createSlice({
     },
     changeRestaurant: (
       state: RestaurantsState,
-      { payload: { restaurant } }: PayloadAction<{ restaurant: Restaurant }>
+      {
+        payload: { restaurant, originalName },
+      }: PayloadAction<{ restaurant: Restaurant; originalName: string }>
     ) => {
-      const index = state.restaurants.findIndex(
-        (r) => r.name === restaurant.name
-      );
+      const index = state.restaurants.findIndex((r) => r.name === originalName);
       if (index !== -1) {
         state.restaurants[index] = restaurant;
         saveToLocalStorage(state);
