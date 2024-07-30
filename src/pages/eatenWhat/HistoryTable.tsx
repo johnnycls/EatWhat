@@ -21,7 +21,7 @@ const HistoryTable: React.FC<{
           className="w-full h-full"
           value={histories}
           editMode="row"
-          dataKey="datetime"
+          dataKey="dateString"
           selectionMode={"checkbox"}
           selection={selectedHistory}
           onSelectionChange={(e) => setSelectedHistory(e.value)}
@@ -29,7 +29,6 @@ const HistoryTable: React.FC<{
           <Column selectionMode="multiple" headerStyle={{ width: "3rem" }} />
           <Column field={"name"} header={"餐廳名"} />
           <Column
-            field={"datetime"}
             header={"時間"}
             body={(history: HistoryType) =>
               `${new Date(history.dateString).toLocaleDateString()} ${new Date(

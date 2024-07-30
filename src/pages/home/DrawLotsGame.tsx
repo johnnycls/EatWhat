@@ -12,7 +12,7 @@ type Lot = {
 const createStarBurst = () => {
   const colors = ["#FFD700", "#FF6347", "#00CED1", "#FF69B4", "#32CD32"];
   const burstPoints = 10;
-  const starsPerBurst = 25;
+  const starsPerBurst = 20;
 
   for (let i = 0; i < burstPoints; i++) {
     const centerX = Math.random() * window.innerWidth;
@@ -26,8 +26,8 @@ const createStarBurst = () => {
 
       star.style.cssText = `
         position: fixed;
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
         background-color: ${color};
         left: ${centerX}px;
         top: ${centerY}px;
@@ -122,11 +122,11 @@ const DrawLotsGame: React.FC<{
 
       const starBurstInterval = setInterval(() => {
         createStarBurst();
-      }, 300);
+      }, 500);
 
       setTimeout(() => {
         clearInterval(starBurstInterval);
-      }, 3000);
+      }, 1500);
     }, TOTAL_DRAWING_TIME);
   };
 

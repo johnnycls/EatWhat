@@ -77,17 +77,23 @@ const Home: React.FC = () => {
                 onChange={(e: ToggleButtonChangeEvent) =>
                   setFilterHistory(e.value)
                 }
-                onLabel="唔想食"
-                offLabel="唔介意食"
+                onLabel="我唔想食"
+                offLabel="我唔介意食"
               />
-              <InputNumber
-                pt={{ input: { root: { className: "w-16" } } }}
-                value={filterDays}
-                onValueChange={(e: InputNumberValueChangeEvent) =>
-                  e.value && setFilterDays(e.value)
-                }
-              />
-              <label>日內食過嘅野</label>
+              {filterHistory ? (
+                <>
+                  <InputNumber
+                    pt={{ input: { root: { className: "w-16" } } }}
+                    value={filterDays}
+                    onValueChange={(e: InputNumberValueChangeEvent) =>
+                      e.value && setFilterDays(e.value)
+                    }
+                  />
+                  <label>日內食過嘅野</label>
+                </>
+              ) : (
+                <label>最近食過嘅野</label>
+              )}
             </div>
 
             {cats.length > 0 && (
