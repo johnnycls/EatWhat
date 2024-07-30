@@ -37,12 +37,12 @@ const Home: React.FC = () => {
     (cats: string[], restaurant) => [...new Set([...cats, ...restaurant.cats])],
     []
   );
-  const [selectedCats, setSelectedCats] = useState<string[]>(cats);
+  const [selectedCats, setSelectedCats] = useState<string[]>([]);
   const [catOptions, setCatOptions] = useState<string[]>([]);
 
   const filteredRestaurants = (() => {
     const filteredCatsRestaurants =
-      cats.length === 0
+      cats.length === 0 || selectedCats.length === 0
         ? restaurants
         : restaurants.filter((restaurant) =>
             hasIntersection(restaurant.cats, selectedCats)
@@ -94,6 +94,7 @@ const Home: React.FC = () => {
               <div className="flex items-center gap-1">
                 <label>我要食</label>
                 <AutoComplete
+                  className="w-48"
                   multiple
                   value={selectedCats}
                   suggestions={catOptions}
