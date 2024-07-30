@@ -76,7 +76,7 @@ const RestaurantTable: React.FC<{
 
           <Column
             field={"cats"}
-            header={"類別"}
+            header={"標籤"}
             body={(restaurant: Restaurant) => restaurant.cats.join(", ")}
             editor={(options) => <CatEditor options={options} cats={cats} />}
           />

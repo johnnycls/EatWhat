@@ -26,9 +26,7 @@ export const exportRestaurants = (state: RestaurantsState): void => {
   const exportData = JSON.stringify(state.restaurants);
   navigator.clipboard
     .writeText(exportData)
-    .then(() => {
-      console.log("Restaurants data copied to clipboard");
-    })
+    .then(() => {})
     .catch((err) => {
       console.error("Failed to copy restaurants data: ", err);
     });

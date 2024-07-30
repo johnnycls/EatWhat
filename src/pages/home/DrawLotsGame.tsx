@@ -12,7 +12,7 @@ type Lot = {
 const createStarBurst = () => {
   const colors = ["#FFD700", "#FF6347", "#00CED1", "#FF69B4", "#32CD32"];
   const burstPoints = 10;
-  const starsPerBurst = 30;
+  const starsPerBurst = 25;
 
   for (let i = 0; i < burstPoints; i++) {
     const centerX = Math.random() * window.innerWidth;
@@ -22,12 +22,12 @@ const createStarBurst = () => {
       const star = document.createElement("div");
       const color = colors[Math.floor(Math.random() * colors.length)];
       const angle = Math.random() * Math.PI * 2;
-      const distance = Math.random() * 150 + 50;
+      const distance = Math.random() * 250 + 100;
 
       star.style.cssText = `
         position: fixed;
-        width: 6px;
-        height: 6px;
+        width: 8px;
+        height: 8px;
         background-color: ${color};
         left: ${centerX}px;
         top: ${centerY}px;
@@ -43,7 +43,7 @@ const createStarBurst = () => {
 };
 
 const animateStar = (star: HTMLDivElement, angle: number, distance: number) => {
-  const duration = 1500;
+  const duration = 2000;
   const startTime = performance.now();
 
   const animate = (currentTime: number) => {
@@ -122,11 +122,11 @@ const DrawLotsGame: React.FC<{
 
       const starBurstInterval = setInterval(() => {
         createStarBurst();
-      }, 250);
+      }, 300);
 
       setTimeout(() => {
         clearInterval(starBurstInterval);
-      }, 2500);
+      }, 3000);
     }, TOTAL_DRAWING_TIME);
   };
 
@@ -145,7 +145,7 @@ const DrawLotsGame: React.FC<{
 
   return (
     <>
-      <div className="absolute">
+      <div className="absolute -z-10">
         <canvas ref={canvasRef} />
       </div>
 

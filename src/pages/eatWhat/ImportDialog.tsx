@@ -31,7 +31,7 @@ const ImportDialog: React.FC<{
       <Dialog
         header="匯入"
         visible={isImportDialogVisible}
-        style={{ width: "50vw" }}
+        style={{ width: "90vw" }}
         onHide={() => {
           if (!isImportDialogVisible) return;
           setIsImportDialogVisible(false);

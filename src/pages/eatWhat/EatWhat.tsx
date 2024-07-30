@@ -20,7 +20,7 @@ const EatWhat: React.FC = () => {
     useState<boolean>(false);
 
   return (
-    <div className="flex flex-col h-full w-full">
+    <div className="flex flex-col h-full w-full overflow-auto">
       <Toast ref={toast} />
       <ConfirmDialog />
       <AppBar />

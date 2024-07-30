@@ -100,7 +100,7 @@ const AddRestaurantDialog: React.FC<{
           </div>
 
           <div className="flex flex-col">
-            <label>類別</label>
+            <label>標籤(輸入後請按選項以加入標籤)</label>
             <AutoComplete
               multiple
               value={newRestaurant.cats}
