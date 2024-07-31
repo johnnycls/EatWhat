@@ -50,10 +50,24 @@ export const historiesSlice = createSlice({
       );
       saveToLocalStorage(state);
     },
+    changeHistory: (
+      state: HistorysState,
+      {
+        payload: { history, originalDateString },
+      }: PayloadAction<{ history: HistoryType; originalDateString: string }>
+    ) => {
+      const index = state.histories.findIndex(
+        (r) => r.dateString === originalDateString
+      );
+      if (index !== -1) {
+        state.histories[index] = history;
+        saveToLocalStorage(state);
+      }
+    },
   },
 });
 
-export const { addHistory, clearHistory, removeHistory } =
+export const { addHistory, clearHistory, removeHistory, changeHistory } =
   historiesSlice.actions;
 
 export default historiesSlice.reducer;

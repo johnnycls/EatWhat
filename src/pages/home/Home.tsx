@@ -30,7 +30,7 @@ const Home: React.FC = () => {
   const restaurants = useAppSelector((state) => state.restaurants.restaurants);
   const histories = useAppSelector((state) => state.histories.histories);
 
-  const [filterHistory, setFilterHistory] = useState<boolean>(false);
+  const [filterHistory, setFilterHistory] = useState<boolean>(true);
   const [filterDays, setFilterDays] = useState<number>(5);
 
   const cats = restaurants.reduce(
@@ -114,7 +114,7 @@ const Home: React.FC = () => {
                   }
                   dropdown
                 />
-                <label>類型嘅野</label>
+                <label>嘅餐廳</label>
               </div>
             )}
           </>
